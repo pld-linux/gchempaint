@@ -13,8 +13,8 @@ BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomeprint-devel >= 2.0.0
 BuildRequires:	libgnomeprintui-devel >= 2.1.3
 BuildRequires:	libgnomeui-devel >= 2.0.0
-BuildRequires:	gcu-lib-devel >= 0.1.3
-Requires:	gcu-lib >= 0.1.3
+BuildRequires:	gnome-chemistry-utils-devel >= 0.1.3
+Requires:	gnome-chemistry-utils >= 0.1.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
