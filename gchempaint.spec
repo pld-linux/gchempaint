@@ -21,16 +21,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 
 %description
-GChemPaint is a 2D chemical structures editor for the Gnome-2 desktop.
+GChemPaint is a 2D chemical structures editor for the GNOME-2 desktop.
 GChemPaint is a multi-document application and will be a bonobo server
-so that some chemistry could be embedded in Gnome applications such as
+so that some chemistry could be embedded in GNOME applications such as
 Gnumeric and Abiword.
 
 %description -l pl
 GChemPaint jest edytorem dwuwymiarowych wzorów chemicznych dla
-¶rodowiska Gnome-2. GChemPaint pozwala na edycjê wielu dokumentów
+¶rodowiska GNOME-2. GChemPaint pozwala na edycjê wielu dokumentów
 jednocze¶nie i bêdzie serwerem bonobo, co pozwoli na u¿ywanie wzorów
-chemicznych w innych aplikacjach Gnome, takich jak Gnumeric czy
+chemicznych w innych aplikacjach GNOME, takich jak Gnumeric czy
 Abiword.
 
 %prep
