@@ -7,7 +7,7 @@ License:	GPL
 Group:		X11/Applications/Science
 Source0:	http://savannah.nongnu.org/download/gchempaint/unstable.pkg/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	cdf5fa5d07884a1ee6a00cf6acb40ed8
-URL:		http://www.nongnu.org/gchempaint
+URL:		http://www.nongnu.org/gchempaint/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libglade2-devel >= 2.0.0
