@@ -61,6 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/%{name}
+# it seems to be the only package using this dir
+%dir %{_datadir}/gnome/ui
 %{_datadir}/gnome/ui/*.xml
 %{_omf_dest_dir}/*
 %{_desktopdir}/%{name}.desktop
