@@ -1,21 +1,22 @@
 Summary:	GNOME 2D chemical structure drawing tool
 Summary(pl):	Program GNOME do rysowania dwuwymiarowych wzorów chemicznych
 Name:		gchempaint
-Version:	0.3.3
+Version:	0.4.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Science
-Source0:	http://savannah.nongnu.org/download/gchempaint/unstable.pkg/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	cdf5fa5d07884a1ee6a00cf6acb40ed8
+Source0:	http://savannah.nongnu.org/download/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	99ceb8578cb626d5dbc5ccff3d6c373d
 URL:		http://www.nongnu.org/gchempaint/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libglade2-devel >= 2.0.0
-BuildRequires:	libgnomeprint-devel >= 2.0.0
 BuildRequires:	libgnomeprintui-devel >= 2.1.3
 BuildRequires:	libgnomeui-devel >= 2.0.0
-BuildRequires:	gnome-chemistry-utils-devel >= 0.1.3
-Requires:	gnome-chemistry-utils >= 0.1.3
+BuildRequires:	libtool
+BuildRequires:	gnome-chemistry-utils-devel >= 0.2.3
+BuildRequires:	openbabel-devel >= 1.100.2
+Requires:	gnome-chemistry-utils >= 0.2.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
@@ -37,6 +38,7 @@ Abiword.
 %setup -q
 
 %build
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -45,9 +47,9 @@ Abiword.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-##crappy fix for make install running scrollkeeper-update
-#rm -fr $RPM_BUILD_ROOT/var
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name} --with-gnome
 
@@ -59,14 +61,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/%{name}
-# it seems to be the only package using this dir
-%dir %{_datadir}/gnome/ui
-%{_datadir}/gnome/ui/*.xml
-%{_omf_dest_dir}/*
+%{_datadir}/application-registry/*
+%{_datadir}/gnome-2.0/ui/*
+%{_datadir}/mime-info/*
+%{_omf_dest_dir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/*.png
-%{_datadir}/mime-info/%{name}.*
 %{_libdir}/bonobo/servers/%{name}.server
