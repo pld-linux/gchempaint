@@ -51,22 +51,25 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
+
 %find_lang %{name} --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /usr/bin/scrollkeeper-update
-%postun -p /usr/bin/scrollkeeper-update
+%post
+%scrollkeeper_update_post
+
+%postun
+%scrollkeeper_update_post
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/%{name}
-%{_datadir}/application-registry/*
 %{_datadir}/gnome-2.0/ui/*
-%{_datadir}/mime-info/*
 %{_omf_dest_dir}/%{name}
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/*.png
