@@ -37,7 +37,7 @@ Abiword.
 %package devel
 Summary:	Header files for gchempaint
 Summary(pl):	Pliki nag³ówkowe dla programu gchempaint
-Group:		X11/Applications/Science
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -53,15 +53,14 @@ tworzenia wtyczek do niego.
 %package static
 Summary:	Static gchempaint libraries
 Summary(pl):	Statyczne biblioteki programu gchempaint
-Group:		X11/Applications/Science
-Requires:	%{name} = %{version}-%{release}
+Group:		X11/Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gchempaint libraries.
 
 %description static -l pl
-Statyczne biblioteki programu gchempaint
-
+Statyczne biblioteki programu gchempaint.
 
 %prep
 %setup -q
@@ -80,8 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-#rm -r $RPM_BUILD_ROOT%{_datadir}/{application-registry,mime-info}
 
 %find_lang %{name} --with-gnome
 
@@ -109,11 +106,13 @@ fi
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/%{name}-viewer
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_libdir}/%{name}
+%{_libdir}/bonobo/servers/%{name}.server
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/%{name}
 %{_datadir}/mime/packages/*
 %{_desktopdir}/%{name}.desktop
-%{_libdir}/bonobo/servers/%{name}.server
 %{_iconsdir}/hicolor/128x128/apps/*
 %{_iconsdir}/hicolor/128x128/mimetypes/*
 %{_iconsdir}/hicolor/32x32/apps/*
@@ -122,14 +121,13 @@ fi
 %{_iconsdir}/hicolor/48x48/mimetypes/*
 %{_iconsdir}/hicolor/72x72/apps/*
 %{_iconsdir}/hicolor/72x72/mimetypes/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_libdir}/%{name}
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/%{name}
-%{_libdir}/lib*.so
-
-%files static
-%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
+%{_includedir}/%{name}
+
+#%files static
+#%defattr(644,root,root,755)
+#??? %{_libdir}/lib*.a
