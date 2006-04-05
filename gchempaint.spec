@@ -19,8 +19,11 @@ BuildRequires:	libglade2-devel >= 2.4.0
 BuildRequires:	libgnomeprintui-devel >= 2.6.0
 BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libtool
+BuildRequires:	rpmbuild(macros) >= 1.198
 BuildRequires:	shared-mime-info >= 0.12
 BuildRequires:	which
+Requires(post,postun):	scrollkeeper
+Requires(post,postun):	/sbin/ldconfig
 Requires:	gnome-chemistry-utils >= 0.4.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -109,7 +112,7 @@ update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
 [ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
 
 %postun
-%scrollkeeper_update_post
+%scrollkeeper_update_postun
 /sbin/ldconfig
 if [ "$1" = "0" ]; then
 	umask 022
@@ -139,6 +142,7 @@ fi
 %{_iconsdir}/hicolor/48x48/mimetypes/*
 %{_iconsdir}/hicolor/72x72/apps/*
 %{_iconsdir}/hicolor/72x72/mimetypes/*
+%{_omf_dest_dir}/gchempaint
 
 %files devel
 %defattr(644,root,root,755)
