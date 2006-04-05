@@ -8,14 +8,19 @@ Group:		X11/Applications/Science
 Source0:	http://savannah.nongnu.org/download/gchempaint/%{name}-%{version}.tar.bz2
 # Source0-md5:	6dfe0ab484dbe997016bb0e823db8df0
 URL:		http://www.nongnu.org/gchempaint/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gnome-chemistry-utils-devel >= 0.4.7
-BuildRequires:	libglade2-devel >= 2.0.0
-BuildRequires:	libgnomeprintui-devel >= 2.1.3
-BuildRequires:	libgnomeui-devel >= 2.0.0
+BuildRequires:	gnome-doc-utils
+BuildRequires:	gnome-vfs2-devel >= 2.6.0
+BuildRequires:	gtk+2-devel >= 2:2.6.0
+BuildRequires:	libbonoboui-devel >= 2.6.0
+BuildRequires:	libglade2-devel >= 2.4.0
+BuildRequires:	libgnomeprintui-devel >= 2.6.0
+BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libtool
-BuildRequires:	openbabel-devel >= 1.100.2
+BuildRequires:	shared-mime-info >= 0.12
+BuildRequires:	which
 Requires:	gnome-chemistry-utils >= 0.4.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,6 +44,13 @@ Summary:	Header files for gchempaint
 Summary(pl):	Pliki nag³ówkowe dla programu gchempaint
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	gnome-chemistry-utils-devel >= 0.4.7
+Requires:	gnome-vfs2-devel >= 2.6.0
+Requires:	gtk+2-devel >= 2:2.6.0
+Requires:	libbonoboui-devel >= 2.6.0
+Requires:	libglade2-devel >= 2.4.0
+Requires:	libgnomeprintui-devel >= 2.6.0
+Requires:	libgnomeui-devel >= 2.6.0
 
 %description devel
 The gchempaint-devel package contains the header files necessary for
@@ -70,8 +82,10 @@ Statyczne biblioteki programu gchempaint.
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
+%{__automake}
 %configure \
-	--disable-update-databases
+	--disable-update-databases \
+	--enable-static
 %{__make}
 
 %install
@@ -79,6 +93,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/plugins/*.{la,a}
 
 %find_lang %{name} --with-gnome
 
@@ -95,10 +111,10 @@ update-mime-database %{_datadir}/mime >/dev/null 2>&1 ||:
 %postun
 %scrollkeeper_update_post
 /sbin/ldconfig
-if [ $1 = 0 ]; then
-    umask 022
-    update-mime-database %{_datadir}/mime >/dev/null 2>&1
-    [ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
+if [ "$1" = "0" ]; then
+	umask 022
+	update-mime-database %{_datadir}/mime >/dev/null 2>&1
+	[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
 fi
 
 %files -f %{name}.lang
@@ -107,7 +123,9 @@ fi
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/%{name}-viewer
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_libdir}/%{name}
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
+%attr(755,root,root) %{_libdir}/%{name}/plugins/*.so
 %{_libdir}/bonobo/servers/%{name}.server
 %{_sysconfdir}/gconf/schemas/*
 %{_datadir}/%{name}
@@ -128,6 +146,6 @@ fi
 %{_libdir}/lib*.la
 %{_includedir}/%{name}
 
-#%files static
-#%defattr(644,root,root,755)
-#??? %{_libdir}/lib*.a
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
