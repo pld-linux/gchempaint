@@ -1,5 +1,5 @@
 Summary:	GNOME 2D chemical structure drawing tool
-Summary(pl):	Program GNOME do rysowania dwuwymiarowych wzorów chemicznych
+Summary(pl.UTF-8):   Program GNOME do rysowania dwuwymiarowych wzorÃ³w chemicznych
 Name:		gchempaint
 Version:	0.6.4
 Release:	1
@@ -35,16 +35,16 @@ GChemPaint is a multi-document application and will be a bonobo server
 so that some chemistry could be embedded in GNOME applications such as
 Gnumeric and Abiword.
 
-%description -l pl
-GChemPaint jest edytorem dwuwymiarowych wzorów chemicznych dla
-¶rodowiska GNOME-2. GChemPaint pozwala na edycjê wielu dokumentów
-jednocze¶nie i bêdzie serwerem bonobo, co pozwoli na u¿ywanie wzorów
+%description -l pl.UTF-8
+GChemPaint jest edytorem dwuwymiarowych wzorÃ³w chemicznych dla
+Å›rodowiska GNOME-2. GChemPaint pozwala na edycjÄ™ wielu dokumentÃ³w
+jednoczeÅ›nie i bÄ™dzie serwerem bonobo, co pozwoli na uÅ¼ywanie wzorÃ³w
 chemicznych w innych aplikacjach GNOME, takich jak Gnumeric czy
 Abiword.
 
 %package devel
 Summary:	Header files for gchempaint
-Summary(pl):	Pliki nag³ówkowe dla programu gchempaint
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe dla programu gchempaint
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gnome-chemistry-utils-devel >= 0.4.7
@@ -60,21 +60,21 @@ The gchempaint-devel package contains the header files necessary for
 developing programs using gchempaint, and especially for writing new
 plugins.
 
-%description devel -l pl
-Pakiet gchempaint-devel zawiera pliki nag³ówkowe niezbêdne do
-tworzenia oprogramowania wykorzystuj±cego gchempaint, a zw³aszcza do
+%description devel -l pl.UTF-8
+Pakiet gchempaint-devel zawiera pliki nagÅ‚Ã³wkowe niezbÄ™dne do
+tworzenia oprogramowania wykorzystujÄ…cego gchempaint, a zwÅ‚aszcza do
 tworzenia wtyczek do niego.
 
 %package static
 Summary:	Static gchempaint libraries
-Summary(pl):	Statyczne biblioteki programu gchempaint
+Summary(pl.UTF-8):   Statyczne biblioteki programu gchempaint
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gchempaint libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki programu gchempaint.
 
 %prep
