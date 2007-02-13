@@ -1,5 +1,5 @@
 Summary:	GNOME 2D chemical structure drawing tool
-Summary(pl.UTF-8):   Program GNOME do rysowania dwuwymiarowych wzorów chemicznych
+Summary(pl.UTF-8):	Program GNOME do rysowania dwuwymiarowych wzorów chemicznych
 Name:		gchempaint
 Version:	0.6.4
 Release:	1
@@ -44,7 +44,7 @@ Abiword.
 
 %package devel
 Summary:	Header files for gchempaint
-Summary(pl.UTF-8):   Pliki nagłówkowe dla programu gchempaint
+Summary(pl.UTF-8):	Pliki nagłówkowe dla programu gchempaint
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gnome-chemistry-utils-devel >= 0.4.7
@@ -67,7 +67,7 @@ tworzenia wtyczek do niego.
 
 %package static
 Summary:	Static gchempaint libraries
-Summary(pl.UTF-8):   Statyczne biblioteki programu gchempaint
+Summary(pl.UTF-8):	Statyczne biblioteki programu gchempaint
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
