@@ -1,12 +1,12 @@
 Summary:	GNOME 2D chemical structure drawing tool
 Summary(pl.UTF-8):	Program GNOME do rysowania dwuwymiarowych wzorów chemicznych
 Name:		gchempaint
-Version:	0.6.4
+Version:	0.6.9
 Release:	1
 License:	GPL
 Group:		X11/Applications/Science
-Source0:	http://savannah.nongnu.org/download/gchempaint/%{name}-%{version}.tar.bz2
-# Source0-md5:	6dfe0ab484dbe997016bb0e823db8df0
+Source0:	http://savannah.nongnu.org/download/gchempaint/0.6/%{name}-%{version}.tar.bz2
+# Source0-md5:	3b81f99972bedccd5f19a6bda785d451
 URL:		http://www.nongnu.org/gchempaint/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
